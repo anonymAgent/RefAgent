@@ -50,9 +50,6 @@ Ensure that all **API keys** are set and the **Refactoring Miner** folder is cor
 ## Documentation
 More documentation to come
 
-## Contributing
-Feel free to submit issues and pull requests to improve the framework!
-
 ## License
 This project is licensed under the MIT License.
 
