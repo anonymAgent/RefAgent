@@ -1,0 +1,5 @@
+javalang
+networkx
+matplotlib
+openai
+GitPython
