@@ -20,7 +20,7 @@ Before running the framework, you need to set up the environment.
 
 2. **Hardware**:
    - Ideally runs on a **GPU** for efficiency
-   - If using **open-source LLMs** (e.g., StarCoder), ensure they are properly installed
+   - If using **open-source LLMs** (e.g., StarCoder), ensure you are in GPU
 
 3. **Refactoring Miner**:
    - Download **Refactoring Miner** from [here](https://github.com/tsantalis/RefactoringMiner)
