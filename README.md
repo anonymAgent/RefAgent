@@ -14,9 +14,13 @@ This repository provides a **multi-agent LLM-based framework** for **automatic s
 Before running the framework, you need to set up the environment.
 
 ### Environment Setup
-1. **API Keys**: Obtain the following API keys and set them as environment variables:
-   - `OPENAI_API_KEY` (if using OpenAI models)
-   - `GITHUB_API_KEY` (for accessing repositories)
+1. **Create a `.env` file** in the project root and add the following environment variables:
+    ```env
+    API_KEY=""
+    GITHUB_API_KEY=""
+    MODEL_NAME="gpt-40"
+    ```
+    Fill in the required API keys before running the framework.
 
 2. **Hardware**:
    - Ideally runs on a **GPU** for efficiency
