@@ -3,6 +3,9 @@ from dependency_graph import JavaClassDependencyAnalyzer, draw_dependency_graph
 from utilities import *
 from OpenaiLLM import OpenAILLM
 import sys
+from settings import Settings
+
+config = Settings()
 # Example usage
 if __name__ == "__main__":
 
@@ -54,7 +57,7 @@ if __name__ == "__main__":
             results["CKO metrics"] = before_metrics
 
             # Example usage:
-            api_key = ""
+            api_key = config.API_KEY
             llm = OpenAILLM(api_key)
             prompt = "You are a software developer, helpull and a java expert"
 
@@ -78,7 +81,7 @@ if __name__ == "__main__":
                 Avoid using natural lanquage explanation
                 """.format(before_calculator.java_code, before_calculator.as_string())
                 
-            Instruction = llm.query_llm(prompt, query, model="gpt-4o-mini")
+            Instruction = llm.query_llm(prompt, query, model=config.MODEL_NAME)
             results["Instruction"] = Instruction
 
             #Decision Node
@@ -91,7 +94,7 @@ if __name__ == "__main__":
 
                     Don't return any natural language explanation
                     """.format(Instruction)
-            do_instrect = llm.query_llm(prompt, query_decisition, model="gpt-4o-mini")
+            do_instrect = llm.query_llm(prompt, query_decisition, model=config.MODEL_NAME)
             
             if do_instrect:   
 
@@ -103,7 +106,7 @@ if __name__ == "__main__":
                             and semantic corectness. Don't remove any comments or annotations.
                             Provide the java class within code block. Avoid using natural langiage explanations
                             """.format(Instruction, before_metrics,Before_java_code)
-                    improvement = llm.query_llm(prompt, query, model="gpt-4o")
+                    improvement = llm.query_llm(prompt, query, model=config.MODEL_NAME)
                     improvement = improvement.replace("```java", "").replace("```", "")
 
                     print(f"------------ Start making the improvement to compile and test Itteration {i}-----------------")
@@ -177,7 +180,7 @@ if __name__ == "__main__":
                             Avoid using natural lanquage explanation
                             """.format(Before_java_code, after_metrics,improvement, after_metrics)
                     
-                    is_improvement = llm.query_llm(prompt, query, model="gpt-4o-mini")
+                    is_improvement = llm.query_llm(prompt, query, model=config.MODEL_NAME)
                     if is_improvement ==False:
                         results["Compilation"] = True
                         results["Test passed"] = True

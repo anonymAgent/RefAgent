@@ -1,6 +1,9 @@
 from utilities import *
 from OpenaiLLM import OpenAILLM
 import sys
+from settings import Settings
+
+config = Settings()
 # Example usage
 if __name__ == "__main__":
 
@@ -37,7 +40,7 @@ if __name__ == "__main__":
 
 
             # Example usage:
-            api_key = ""
+            api_key = config.API_KEY
             llm = OpenAILLM(api_key)
             prompt = """ Instruction
                     You are a powerful model specialized in refactoring Java code. Code refactoring is the process of improving the internal structure, readability, and
@@ -52,7 +55,7 @@ if __name__ == "__main__":
                 # refactored version of the same code snippet:
                 """.format(java_code)
                 
-            llm_code = llm.query_llm(prompt, query, model="gpt-4o-mini")
+            llm_code = llm.query_llm(prompt, query, model=config.MODEL_NAME)
             llm_code = llm_code.replace("```java", "").replace("```", "")
             
 

@@ -3,6 +3,9 @@ from dependency_graph import JavaClassDependencyAnalyzer, draw_dependency_graph
 from utilities import *
 from OpenaiLLM import OpenAILLM
 import sys
+from settings import Settings
+
+config = Settings()
 # Example usage
 if __name__ == "__main__":
 
@@ -57,7 +60,7 @@ if __name__ == "__main__":
             results["is improved"] = True
 
             # Example usage:
-            api_key = ""
+            api_key = config.API_KEY
             llm = OpenAILLM(api_key)
             prompt = "You are a software developer, helpull and a java expert"
 
@@ -69,7 +72,7 @@ if __name__ == "__main__":
                             and semantic corectness. Don't remove any comments or annotations.
                             Provide the java class within code block. Avoid using natural langiage explanations
                             """.format(before_metrics,Before_java_code)
-            improvement = llm.query_llm(prompt, query, model="gpt-4o")
+            improvement = llm.query_llm(prompt, query, model=config.MODEL_NAME)
             improvement = improvement.replace("```java", "").replace("```", "")
 
             print(f"------------ Start making the improvement to compile and test Itteration {i}-----------------")
@@ -130,7 +133,9 @@ if __name__ == "__main__":
                 
             write_to_java_file(file_path=path_to_java_file_after, java_code=Before_java_code)
             export_dict_to_json(results, f"results/{protject_name}/{target_class}/metrics")
-
+        except:
+            continue
+            
             
 
 

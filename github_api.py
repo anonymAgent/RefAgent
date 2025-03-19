@@ -5,7 +5,9 @@ import subprocess
 import os
 from utilities import *
 from tqdm import tqdm  # Import tqdm for the progress bar
+from settings import Settings
 
+config = Settings()
 class GitHubAPI:
     def __init__(self, tokens):
         """
@@ -116,8 +118,9 @@ class GitHubAPI:
                 print(f"Error running RefactoringMiner for commit {commit_id}: {e}")
 
 # Example usage:
-tokens = [
-          ]  # List of your GitHub API tokens
+tokens = config.GITHUB_API_KEY
+
+# List of your GitHub API tokens
 github_api = GitHubAPI(tokens)
 
 
