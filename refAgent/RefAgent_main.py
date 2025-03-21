@@ -4,6 +4,14 @@ from utilities import *
 from refAgent.OpenaiLLM import OpenAILLM
 import sys
 from settings import Settings
+import argparse
+
+# === Parse project name argument ===
+parser = argparse.ArgumentParser(description="Refactor Java Project")
+parser.add_argument("project_name", type=str, help="Name of the project folder (e.g. accumulo-2.1)")
+args = parser.parse_args()
+
+protject_name = args.project_name
 
 config = Settings()
 # Example usage
@@ -11,7 +19,6 @@ if __name__ == "__main__":
 
     #Prepare needed folders
     results = {}
-    protject_name = "accumulo-2.1"
     os.makedirs(f"results/{protject_name}", exist_ok=True)
     os.makedirs(f"data/paths/{protject_name}", exist_ok=True)
 
