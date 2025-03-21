@@ -1,7 +1,7 @@
-from java_metrics_calculator import JavaMetricsCalculator
-from dependency_graph import JavaClassDependencyAnalyzer, draw_dependency_graph
+from refAgent.java_metrics_calculator import JavaMetricsCalculator
+from refAgent.dependency_graph import JavaClassDependencyAnalyzer, draw_dependency_graph
 from utilities import *
-from OpenaiLLM import OpenAILLM
+from refAgent.OpenaiLLM import OpenAILLM
 import sys
 from settings import Settings
 
@@ -16,12 +16,12 @@ if __name__ == "__main__":
     os.makedirs(f"data/paths/{protject_name}", exist_ok=True)
 
     #Identify the .java files in  REPO
-    export_java_files_to_json(f"projects/{protject_name}", f"data/paths/{protject_name}/{protject_name}_files.json")
+    export_java_files_to_json(f"projects/before/{protject_name}", f"data/paths/{protject_name}/{protject_name}_files.json")
     files = read_json_file(f"data/paths/{protject_name}/{protject_name}_files.json")
     files = find_non_test_files(files)
     for file in files:
         try:
-            project_directory = f"projects/{protject_name}"
+            project_directory = f"projects/before/{protject_name}"
             target_class = extract_class_name(file)
             class_directory = os.path.dirname(file)
 
@@ -49,7 +49,7 @@ if __name__ == "__main__":
             before_calculator.clean_repository()
 
             path_to_java_file = file
-            path_to_java_file_after = path_to_java_file.replace("projects","projects_after")
+            path_to_java_file_after = path_to_java_file.replace("before","after")
 
             Before_java_code = before_calculator.java_code
 
@@ -144,9 +144,8 @@ if __name__ == "__main__":
                                 continue  
                     print("------------- Commit the code changes to github-------------------")
 
-                    # Example usage
-                    repo_path = f'projects_after/{protject_name}'
-                    file_path = file.replace(f"projects/{protject_name}/", "")
+                    repo_path = f'projects/after/{protject_name}'
+                    file_path = file.replace(f"projects/before/{protject_name}/", "")
 
                     commit_message = f'Your changing file {file_path}'
                     commit_file_to_github(repo_path, file_path, commit_message)   

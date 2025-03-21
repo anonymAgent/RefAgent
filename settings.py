@@ -8,8 +8,3 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
-
-# Usage
-settings = Settings()
-print(settings.DATABASE_URL)
-print(settings.API_KEY)
