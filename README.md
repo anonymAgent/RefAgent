@@ -1,3 +1,4 @@
+
 # Multi-agent LLM-based Framework for Automatic Software Refactoring
 
 ## Overview
@@ -8,7 +9,7 @@ This repository provides a **multi-agent LLM-based framework** for **automatic s
 - Utilization of **LLMs** (e.g., OpenAI, StarCoder, etc.)
 - GPU support for faster processing
 - Integration with **Refactoring Miner** for detecting and validating refactorings
-- Compatibility with GitHub repositories for code retrieval and version control, and commit improvement
+- Compatibility with GitHub repositories for code retrieval, version control, and committing improvements
 
 ## Requirements
 Before running the framework, you need to set up the environment.
@@ -24,13 +25,19 @@ Before running the framework, you need to set up the environment.
 
 2. **Hardware**:
    - Ideally runs on a **GPU** for efficiency
-   - If using **open-source LLMs** (e.g., StarCoder), ensure you are in GPU
+   - If using **open-source LLMs** (e.g., StarCoder), ensure you are running with GPU support
 
 3. **Refactoring Miner**:
-   - Download **Refactoring Miner** from [here](https://github.com/tsantalis/RefactoringMiner)
+   - Download **Refactoring Miner** from [this GitHub repo](https://github.com/tsantalis/RefactoringMiner)
    - Place it inside a folder named `REFACTORINGMINER` at the project root
 
-### Installation
+4. **Java & Maven**:
+   - Make sure **Maven** is installed and accessible via the terminal
+   - Required Maven version: **3.0.5**
+   - Make sure your **Java version is compatible** with the Maven project being cloned and built
+   > ⚠️ **If the Maven build fails**, please ensure you are using a Java version supported by the project (e.g., Java 8, 11, etc.)
+
+## Installation
 ```bash
 # Clone the repository
 git clone https://github.com/your-repo/multi-agent-refactoring.git
@@ -45,15 +52,43 @@ pip install -r requirements.txt
 ```
 
 ## Running Experiments
-To run the experiments, execute the main script:
+
+### 1. Full Pipeline (Clone → Build → Refactor)
+To run the complete pipeline using a GitHub repo and a specific tag:
+
 ```bash
-python RefAgent_main.py
+./run_refAgent.sh <org/repo-name> <tag>
 ```
-Ensure that all **API keys** are set and the **Refactoring Miner** folder is correctly placed before running the script.
+
+**Example:**
+```bash
+./run_refAgent.sh apache/maven v3.8.6
+```
+
+This script will:
+- Clone the specified repository tag into `projects/before/`
+- Copy it into `projects/after/`
+- Build it using Maven
+- Launch the refactoring pipeline via `refAgent/RefAgent_main.py`
+
+### 2. Running the Python Refactoring Script Directly
+If you already have a cloned and built project (e.g., from `run_refAgent.sh`), you can run the main refactoring pipeline directly:
+
+```bash
+python refAgent/RefAgent_main.py <project-name>
+```
+
+**Example:**
+```bash
+python refAgent/RefAgent_main.py jclouds
+```
+
+## Repository List
+
+Inside the folder `data/repositories`, you will find a list of all the repositories and their corresponding tags used in our experiments. These are ready to be passed into the `setup_and_build.sh` script.
 
 ## Documentation
-More documentation to come
+More documentation will be added soon to explain the internal logic of each agent and the LLM prompt strategies.
 
 ## License
-This project is licensed under the MIT License.
-
+This project is licensed under the **MIT License**.
