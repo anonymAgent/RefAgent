@@ -107,7 +107,7 @@ if __name__ == "__main__":
 
                 for i in range(5): 
                     query = """
-                            Following the instruction Instructions:{}  and CKO metrics {} improve the provided java code {} and improve the
+                            Following the instruction Instructions:{}  and CKO metrics {} and dependent calsses, improve the provided java code {} and improve the
                             CKO metrics. You can assume that the given class and methods are functionally correct. Ensure that you do not
                             Alter the behaviour of the external method while maintaining the behaviour of the method, maintaining both syntactic
                             and semantic corectness. Don't remove any comments or annotations.

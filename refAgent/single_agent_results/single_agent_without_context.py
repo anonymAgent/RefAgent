@@ -1,4 +1,4 @@
-from java_metrics_calculator import JavaMetricsCalculator
+from refAgent.java_metrics_calculator import JavaMetricsCalculator
 from dependency_graph import JavaClassDependencyAnalyzer, draw_dependency_graph
 from utilities import *
 from OpenaiLLM import OpenAILLM
