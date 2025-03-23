@@ -1,4 +1,3 @@
-
 # Multi-agent LLM-based Framework for Automatic Software Refactoring
 
 ## Overview
@@ -86,6 +85,10 @@ python refAgent/RefAgent_main.py jclouds
 ## Repository List
 
 Inside the folder `data/repositories`, you will find a list of all the repositories and their corresponding tags used in our experiments. These are ready to be passed into the `setup_and_build.sh` script.
+
+## Results
+
+Inside the `results` folder, you will find the outcomes of the refactoring experiments, including detailed logs, refactoring types, metrics comparison, and other evaluation outputs.
 
 ## Documentation
 More documentation will be added soon to explain the internal logic of each agent and the LLM prompt strategies.
