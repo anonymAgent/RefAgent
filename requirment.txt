@@ -3,3 +3,8 @@ networkx
 matplotlib
 openai
 GitPython
+pandas
+seaborn
+mlxtend
+pydantic-settings
+openpyxl
